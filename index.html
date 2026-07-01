@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الإنكوتيرمز 2020 — دورة 30 دقيقة</title>
+<style>
+  :root {
+    --bg:       #fafaf8;
+    --bg2:      #f0efe9;
+    --bg3:      #e4e3db;
+    --text:     #1c1c18;
+    --text2:    #5a5a54;
+    --text3:    #9a9a92;
+    --gold:     #b8860b;
+    --gold-bg:  #fdf6e3;
+    --gold-bdr: #d4a820;
+    --blue:     #1a4f8a;
+    --blue-bg:  #e8f0fa;
+    --green:    #2d6a1f;
+    --green-bg: #eaf4e4;
+    --red:      #8a1a1a;
+    --red-bg:   #faeaea;
+    --orange:   #7a3d0a;
+    --orange-bg:#fdf0e0;
+    --border:   rgba(0,0,0,0.10);
+    --border2:  rgba(0,0,0,0.18);
+    --radius:   8px;
+    --radius-lg:14px;
+    --font:     'Segoe UI', Tahoma, 'Arabic Transparent', Arial, sans-serif;
+    --shadow:   0 1px 4px rgba(0,0,0,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#1a1a16; --bg2:#242420; --bg3:#2e2e28;
+      --text:#e6e4d8; --text2:#8a8a80; --text3:#5a5a50;
+      --gold:#d4a820; --gold-bg:#3a2e08; --gold-bdr:#b8860b;
+      --blue:#5a9fd4; --blue-bg:#0e2a4a;
+      --green:#6abf50; --green-bg:#0e2e08;
+      --red:#e05050; --red-bg:#2e0e0e;
+      --orange:#e09040; --orange-bg:#2e1a08;
+      --border:rgba(255,255,255,0.10); --border2:rgba(255,255,255,0.18);
+    }
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    max-width:820px;
+    margin:0 auto;
+    padding:2rem 1.5rem 5rem;
+    line-height:1.75;
+    font-size:15px;
+  }
+
+  /* ── HEADER ── */
+  .course-header{
+    border-bottom:2px solid var(--gold);
+    padding-bottom:1.2rem;
+    margin-bottom:1.5rem;
+  }
+  .course-label{
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:6px;
+  }
+  h1{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.35;}
+  .subtitle{font-size:13px;color:var(--text2);}
+
+  /* ── PROGRESS ── */
+  .prog-wrap{margin:1.2rem 0 .5rem;display:flex;align-items:center;gap:10px;}
+  .prog-bar{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .4s ease;}
+  .prog-label{font-size:11px;color:var(--text3);white-space:nowrap;}
+
+  /* ── TABS ── */
+  .tab-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .tab{
+    padding:5px 12px;border-radius:20px;
+    border:.5px solid var(--border2);
+    font-size:12px;cursor:pointer;
+    background:var(--bg2);color:var(--text2);
+    transition:all .15s;font-family:var(--font);
+  }
+  .tab.active{background:var(--gold-bg);color:var(--gold);border-color:var(--gold-bdr);font-weight:600;}
+  .tab:hover:not(.active){background:var(--bg3);}
+
+  /* ── MODULE ── */
+  .module{display:none;}
+  .module.active{display:block;}
+  .mod-header{display:flex;align-items:center;gap:10px;margin-bottom:1.1rem;flex-wrap:wrap;}
+  .mod-badge{
+    padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;
+    background:var(--gold-bg);color:var(--gold);border:.5px solid var(--gold-bdr);
+  }
+  .mod-title{font-size:18px;font-weight:700;color:var(--text);}
+  .mod-time{font-size:12px;color:var(--text3);margin-right:auto;}
+
+  /* ── KEY POINTS ── */
+  .kp{
+    display:flex;gap:12px;align-items:flex-start;
+    padding:11px 14px;
+    border-right:3px solid var(--gold);
+    margin-bottom:10px;background:var(--bg2);
+    border-radius:var(--radius) 0 0 var(--radius);
+  }
+  .kp-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+  .kp p{font-size:13.5px;line-height:1.7;color:var(--text);}
+  .kp strong{font-weight:600;color:var(--text);}
+  .kp.blue{border-right-color:var(--blue);}
+  .kp.green{border-right-color:var(--green);}
+  .kp.red{border-right-color:var(--red);}
+
+  /* ── ALERT BOXES ── */
+  .alert{border-radius:var(--radius);padding:11px 14px;margin:1rem 0;font-size:13px;line-height:1.7;}
+  .alert.warn{background:var(--orange-bg);color:var(--orange);}
+  .alert.info{background:var(--blue-bg);color:var(--blue);}
+  .alert.success{background:var(--green-bg);color:var(--green);}
+  .alert strong{font-weight:600;}
+
+  /* ── INCOTERM CARD GRID ── */
+  .ic-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:1rem 0;}
+  .ic-card{
+    border-radius:var(--radius);border:.5px solid var(--border);
+    padding:11px 13px;background:var(--bg2);
+    cursor:pointer;transition:all .15s;
+  }
+  .ic-card:hover{border-color:var(--gold-bdr);}
+  .ic-top{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+  .ic-code{
+    font-size:15px;font-weight:800;color:var(--gold);
+    font-family:monospace;
+  }
+  .ic-name{font-size:12px;color:var(--text2);}
+  .ic-desc{font-size:11.5px;color:var(--text2);line-height:1.55;}
+  .ic-tag{
+    display:inline-block;margin-top:6px;
+    font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;
+  }
+  .tag-sea{background:var(--blue-bg);color:var(--blue);}
+  .tag-any{background:var(--green-bg);color:var(--green);}
+  .tag-seller{background:var(--orange-bg);color:var(--orange);}
+  .tag-buyer{background:var(--red-bg);color:var(--red);}
+
+  /* ── RISK TRANSFER BAR ── */
+  .risk-bar-wrap{margin:1rem 0;}
+  .risk-label-row{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:4px;}
+  .risk-bar{
+    height:28px;border-radius:var(--radius);overflow:hidden;
+    display:flex;position:relative;
+  }
+  .risk-seg{
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;color:#fff;
+    transition:flex .4s;
+  }
+  .risk-seg.seller{background:var(--blue);}
+  .risk-seg.buyer{background:var(--gold);}
+
+  /* ── COMPARISON TABLE ── */
+  .comp-table{width:100%;border-collapse:collapse;font-size:12px;margin:1rem 0;}
+  .comp-table th{
+    background:var(--gold-bg);color:var(--gold);
+    padding:7px 10px;text-align:right;
+    border-bottom:1.5px solid var(--gold-bdr);
+    font-weight:700;
+  }
+  .comp-table td{
+    padding:7px 10px;border-bottom:.5px solid var(--border);
+    vertical-align:middle;color:var(--text2);
+  }
+  .comp-table tr:hover td{background:var(--bg2);}
+  .check{color:var(--green);font-weight:700;}
+  .cross{color:var(--red);font-weight:700;}
+
+  /* ── EXAMPLE BOX ── */
+  .example-box{
+    border:.5px solid var(--gold-bdr);border-radius:var(--radius-lg);
+    padding:14px 16px;margin:1rem 0;background:var(--gold-bg);
+  }
+  .ex-label{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+  .ex-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .ex-body{font-size:13px;color:var(--text2);line-height:1.7;}
+  .ex-body strong{color:var(--text);font-weight:600;}
+
+  /* ── SCENARIO TABS ── */
+  .scen-tabs{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;}
+  .scen-tab{
+    padding:4px 11px;border-radius:20px;
+    border:.5px solid var(--border);font-size:12px;
+    cursor:pointer;background:var(--bg);color:var(--text2);font-family:var(--font);
+  }
+  .scen-tab.active{background:var(--blue-bg);color:var(--blue);border-color:var(--blue);}
+  .scen-content{display:none;}
+  .scen-content.active{display:block;}
+
+  /* ── FLOW DIAGRAM ── */
+  .flow-scroll{overflow-x:auto;margin:1rem 0;}
+  .flow-row{display:flex;align-items:center;min-width:560px;}
+  .flow-step{flex:1;text-align:center;}
+  .flow-box{
+    background:var(--bg2);border:.5px solid var(--border);
+    border-radius:var(--radius);padding:8px 6px;
+    font-size:11px;color:var(--text);line-height:1.45;
+  }
+  .flow-box.sel{background:var(--blue-bg);color:var(--blue);border-color:var(--blue);font-weight:600;}
+  .flow-box.buy{background:var(--gold-bg);color:var(--gold);border-color:var(--gold-bdr);font-weight:600;}
+  .flow-box.shared{background:var(--green-bg);color:var(--green);border-color:var(--green);font-weight:600;}
+  .flow-arr{color:var(--text3);font-size:14px;padding:0 3px;flex-shrink:0;}
+
+  /* ── CHECKLIST ── */
+  .cl-title{font-size:13px;font-weight:700;color:var(--text);margin:1rem 0 .5rem;}
+  .checklist{display:flex;flex-direction:column;gap:7px;margin-bottom:1rem;}
+  .check-item{
+    display:flex;gap:9px;align-items:flex-start;
+    font-size:13px;color:var(--text);line-height:1.6;cursor:pointer;
+    user-select:none;
+  }
+  .check-box{
+    width:18px;height:18px;border-radius:4px;
+    border:.5px solid var(--border2);flex-shrink:0;margin-top:2px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;transition:all .15s;background:var(--bg);
+  }
+  .check-box.done{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+
+  /* ── QUIZ ── */
+  .quiz-box{
+    border:.5px solid var(--border2);border-radius:var(--radius-lg);
+    padding:16px;margin-top:1.25rem;
+  }
+  .quiz-label{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase;}
+  .quiz-q{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text);line-height:1.6;}
+  .quiz-opts{display:flex;flex-direction:column;gap:7px;}
+  .quiz-opt{
+    padding:10px 14px;border-radius:var(--radius);
+    border:.5px solid var(--border);font-size:13.5px;
+    cursor:pointer;background:var(--bg);color:var(--text2);
+    transition:all .15s;text-align:right;
+    font-family:var(--font);line-height:1.55;
+  }
+  .quiz-opt:hover:not(:disabled){border-color:var(--gold-bdr);color:var(--gold);}
+  .quiz-opt.correct{background:var(--green-bg);color:var(--green);border-color:var(--green);cursor:default;}
+  .quiz-opt.wrong{background:var(--red-bg);color:var(--red);border-color:var(--red);cursor:default;}
+  .quiz-feedback{
+    margin-top:10px;font-size:13px;line-height:1.7;
+    padding:10px 13px;border-radius:var(--radius);display:none;
+  }
+  .quiz-feedback.show{display:block;}
+  .quiz-feedback.ok{background:var(--green-bg);color:var(--green);}
+  .quiz-feedback.no{background:var(--red-bg);color:var(--red);}
+
+  /* ── NAV ── */
+  .nav-row{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:1.5rem;padding-top:1rem;
+    border-top:.5px solid var(--border);
+  }
+  .nav-btn{
+    padding:8px 20px;border-radius:var(--radius);
+    border:.5px solid var(--border2);font-size:14px;
+    cursor:pointer;background:var(--bg);color:var(--text);
+    transition:all .15s;font-family:var(--font);
+  }
+  .nav-btn:hover:not(:disabled){background:var(--bg2);}
+  .nav-btn.primary{background:var(--gold);color:#fff;border-color:transparent;}
+  .nav-btn.primary:hover{opacity:.9;}
+  .nav-btn:disabled{opacity:.3;cursor:not-allowed;}
+  .counter{font-size:12px;color:var(--text3);}
+
+  /* ── COMPLETE ── */
+  .complete-box{text-align:center;padding:2rem 1rem;}
+  .complete-icon{font-size:48px;margin-bottom:.75rem;}
+  .complete-title{font-size:22px;font-weight:700;margin-bottom:.5rem;}
+  .complete-sub{font-size:13.5px;color:var(--text2);line-height:1.75;max-width:500px;margin:0 auto 1rem;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:540px){
+    .ic-grid,.flow-row>*{grid-template-columns:1fr;}
+    .tab{font-size:11px;padding:4px 9px;}
+    body{padding:1rem 1rem 3rem;font-size:14px;}
+    .comp-table{font-size:11px;}
+  }
+
+  /* ── PRINT ── */
+  @media print{
+    .tab-row,.nav-row,.quiz-box,.prog-wrap{display:none!important;}
+    .module{display:block!important;page-break-after:always;}
+    body{max-width:100%;padding:1rem;}
+  }
+
+  /* small utility */
+  .divider{border:none;border-top:.5px solid var(--border);margin:1rem 0;}
+  .section-title{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin:1rem 0 .6rem;}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     HEADER
+════════════════════════════════ -->
+<div class="course-header">
+  <div class="course-label">دورة تدريبية مكثفة · 30 دقيقة</div>
+  <h1>الإنكوتيرمز 2020<br>من النظرية إلى الاعتماد المستندية</h1>
+  <p class="subtitle">سبع وحدات تفاعلية · أمثلة حية من الاعتمادات المستندية · قائمة على إنكوتيرمز 2020 وكتاب الربان عمر فرج رنوش</p>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-bar"><div class="prog-fill" id="prog" style="width:14.28%"></div></div>
+  <div class="prog-label" id="prog-label">1 / 7</div>
+</div>
+
+<div class="tab-row">
+  <button class="tab active" onclick="goTo(0)">١. ما هي الإنكوتيرمز؟</button>
+  <button class="tab"         onclick="goTo(1)">٢. المجموعات الأربع</button>
+  <button class="tab"         onclick="goTo(2)">٣. مجموعة F و C</button>
+  <button class="tab"         onclick="goTo(3)">٤. مجموعة D</button>
+  <button class="tab"         onclick="goTo(4)">٥. الإنكوتيرمز في الاعتماد</button>
+  <button class="tab"         onclick="goTo(5)">٦. أخطاء شائعة</button>
+  <button class="tab"         onclick="goTo(6)">٧. جهات الاتصال</button>
+</div>
+
+<!-- ════════════ MODULE 0 ════════════ -->
+<div class="module active" id="m0">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ١</span>
+    <span class="mod-title">ما هي الإنكوتيرمز ولماذا تهمك؟</span>
+    <span class="mod-time">٥ دقائق</span>
+  </div>
+
+  <div class="kp">
+    <span class="kp-icon">📜</span>
+    <p>الإنكوتيرمز <strong>(Incoterms)</strong> هي اختصار لـ International Commercial Terms — قواعد دولية تُصدرها غرفة التجارة الدولية ICC منذ عام 1936، وآخر إصدار هو <strong>إنكوتيرمز 2020</strong>.</p>
+  </div>
+  <div class="kp">
+    <span class="kp-icon">⚖️</span>
+    <p>تُحدد كل مصطلح <strong>ثلاثة أشياء فقط</strong>: من يدفع تكاليف النقل؟ من يحمل مخاطر الضرر والفقدان؟ في أي لحظة تنتقل المسؤولية من البائع إلى المشتري؟</p>
+  </div>
+  <div class="kp green">
+    <span class="kp-icon">🔗</span>
+    <p>في الاعتماد المستندي (LC)، يجب أن يتطابق <strong>المصطلح التجاري المذكور في الاعتماد</strong> بالضبط مع ما تصفه الفاتورة وبوليصة الشحن. أي تناقض = سبب لرفض الدفع.</p>
+  </div>
+  <div class="kp red">
+    <span class="kp-icon">🚫</span>
+    <p><strong>DDU ألغي رسمياً</strong> في إنكوتيرمز 2010 واستُبدل بـ <strong>DAP</strong> (Delivered At Place). إذا كتبت DDU في عقدك أو اعتمادك اليوم، فأنت تستخدم مصطلحاً منتهي الصلاحية — وهو مصدر نزاعات شائعة في ليبيا.</p>
+  </div>
+
+  <div class="alert info">
+    <strong>من الكتاب (الربان عمر فرج رنوش):</strong> "الربح عند الشراء" — اختيار المصطلح الصحيح يخفض تكاليفك ويرفع هامش ربحك قبل أن تصل البضاعة.
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">لماذا تغير إنكوتيرمز 2020?</div>
+
+  <div class="ic-grid">
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">DAT→DPU</span></div>
+      <div class="ic-desc">تغيّر اسم DAT إلى <strong>DPU</strong> (Delivered at Place Unloaded) ليوضح أن التسليم يكون بعد التفريغ في أي موقع، لا فقط المحطات.</div>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">FCA تحديث</span></div>
+      <div class="ic-desc">أصبح بإمكان المشتري طلب بوليصة شحن <strong>"محملة على ظهر السفينة"</strong> عند استخدام FCA، وهذا حل إشكالية الاعتمادات المستندية.</div>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">CIF/CIP تأمين</span></div>
+      <div class="ic-desc">رُفع الحد الأدنى للتأمين في <strong>CIP إلى 110%</strong> (Institute Cargo Clauses A) بينما بقي CIF على الحد الأدنى (Clause C).</div>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">نقل النقل الخاص</span></div>
+      <div class="ic-desc">إنكوتيرمز 2020 يعترف صراحةً بحق البائع في استخدام <strong>مركبات نقله الخاصة</strong> دون ناقل طرف ثالث (في FCA وDAP وDDP).</div>
+    </div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-label">اختبر نفسك</div>
+    <p class="quiz-q">مستورد ليبي كتب في عقده "تسليم DDU طرابلس". ما المشكلة؟</p>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="answer(this,'wrong',0)">DDU يعني أن البائع مسؤول عن الجمارك وهذا خطأ</button>
+      <button class="quiz-opt" onclick="answer(this,'correct',0)">DDU مصطلح ملغى منذ 2010 — يجب استخدام DAP بدلاً منه لتجنب الغموض القانوني والنزاعات</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',0)">لا توجد مشكلة، DDU و DAP متطابقان تماماً</button>
+    </div>
+    <div class="quiz-feedback" id="qf0"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" disabled>→ السابق</button>
+    <span class="counter">١ / ٧</span>
+    <button class="nav-btn primary" onclick="goTo(1)">← التالي</button>
+  </div>
+</div>
+
+<!-- ════════════ MODULE 1 ════════════ -->
+<div class="module" id="m1">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ٢</span>
+    <span class="mod-title">المجموعات الأربع — خريطة سريعة</span>
+    <span class="mod-time">٥ دقائق</span>
+  </div>
+
+  <div class="kp">
+    <span class="kp-icon">🗺️</span>
+    <p>الإنكوتيرمز 2020 تضم <strong>11 مصطلحاً</strong> في 4 مجموعات. القاعدة الذهبية: كلما تقدمنا من E إلى D، <strong>زادت مسؤولية البائع</strong> وانخفضت مسؤولية المشتري.</p>
+  </div>
+
+  <div class="risk-bar-wrap">
+    <div class="risk-label-row">
+      <span>🔵 مسؤولية البائع أكبر</span>
+      <span>🟡 مسؤولية المشتري أكبر</span>
+    </div>
+    <div class="risk-bar">
+      <div class="risk-seg seller" style="flex:1">DDP</div>
+      <div class="risk-seg seller" style="flex:1">DAP</div>
+      <div class="risk-seg seller" style="flex:1">DPU</div>
+      <div class="risk-seg seller" style="flex:.8">CIF</div>
+      <div class="risk-seg seller" style="flex:.8">CFR</div>
+      <div class="risk-seg seller" style="flex:.8">CIP</div>
+      <div class="risk-seg buyer" style="flex:.7">FOB</div>
+      <div class="risk-seg buyer" style="flex:.7">FCA</div>
+      <div class="risk-seg buyer" style="flex:.7">FAS</div>
+      <div class="risk-seg buyer" style="flex:.5">EXW</div>
+    </div>
+    <div class="risk-label-row" style="margin-top:4px;">
+      <span style="font-size:11px">← البائع يتحمل كل شيء (DDP)</span>
+      <span style="font-size:11px">(EXW) المشتري يتحمل كل شيء →</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-title">المجموعة E — المغادرة (المشتري يتحمل كل شيء)</div>
+  <div class="ic-grid">
+    <div class="ic-card">
+      <div class="ic-top">
+        <span class="ic-code">EXW</span>
+        <span class="ic-name">تسليم أرض المصنع</span>
+      </div>
+      <div class="ic-desc">البائع يضع البضاعة في مستودعه فقط. المشتري يتحمل <strong>كل شيء</strong>: الشحن، التأمين، إجراءات التصدير، الجمارك.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+  </div>
+
+  <div class="section-title">المجموعة F — أجور النقل غير مدفوعة (المشتري يختار الناقل)</div>
+  <div class="ic-grid">
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">FCA</span><span class="ic-name">تسليم الناقل</span></div>
+      <div class="ic-desc">البائع يسلم في موقع محدد (مستودع، ميناء، محطة). المشتري يختار الناقل ويدفع النولون.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">FAS</span><span class="ic-name">تسليم إلى جانب السفينة</span></div>
+      <div class="ic-desc">البائع يضع البضاعة بجانب السفينة في الميناء. المشتري مسؤول من لحظة الوضع على الرصيف.</div>
+      <span class="ic-tag tag-sea">بحري فقط</span>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">FOB</span><span class="ic-name">تسليم على ظهر السفينة</span></div>
+      <div class="ic-desc">المسؤولية تنتقل فور وضع البضاعة على متن السفينة. الأكثر استخداماً في البضائع السائبة والصب.</div>
+      <span class="ic-tag tag-sea">بحري فقط</span>
+    </div>
+  </div>
+
+  <div class="section-title">المجموعة C — أجور النقل مدفوعة (البائع يدفع النقل)</div>
+  <div class="ic-grid">
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">CFR</span><span class="ic-name">التكلفة والنولون</span></div>
+      <div class="ic-desc">البائع يدفع شحن البضاعة إلى ميناء الوصول. لكن المخاطرة تنتقل للمشتري فور الشحن.</div>
+      <span class="ic-tag tag-sea">بحري فقط</span>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">CIF</span><span class="ic-name">التكلفة والتأمين والنولون</span></div>
+      <div class="ic-desc">مثل CFR + البائع يشتري وثيقة تأمين بحري لصالح المشتري (حد أدنى 110% — Clause C).</div>
+      <span class="ic-tag tag-sea">بحري فقط</span>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">CPT</span><span class="ic-name">النقل مدفوع حتى</span></div>
+      <div class="ic-desc">البائع يدفع نقل البضاعة إلى الوجهة. يُستخدم للشحن بالحاويات وجميع وسائل النقل.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">CIP</span><span class="ic-name">النقل والتأمين مدفوعان حتى</span></div>
+      <div class="ic-desc">مثل CPT + تأمين شامل <strong>(Clause A — 110%)</strong>. الأفضل للبضائع عالية القيمة والشحن الجوي.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+  </div>
+
+  <div class="section-title">المجموعة D — الوصول (البائع يتحمل كل شيء)</div>
+  <div class="ic-grid">
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">DAP</span><span class="ic-name">تسليم في موقع محدد</span></div>
+      <div class="ic-desc">البائع يوصل البضاعة إلى الموقع المحدد <strong>دون تفريغ</strong>. المشتري يسدد الجمارك والضرائب.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+    <div class="ic-card">
+      <div class="ic-top"><span class="ic-code">DPU</span><span class="ic-name">تسليم بعد التفريغ</span></div>
+      <div class="ic-desc">مثل DAP لكن <strong>البائع ملزم بتفريغ البضاعة</strong> في الموقع. المصطلح الوحيد الذي يشمل التفريغ.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+    <div class="ic-card" style="grid-column:1/-1">
+      <div class="ic-top"><span class="ic-code">DDP</span><span class="ic-name">تسليم مدفوع الرسوم</span></div>
+      <div class="ic-desc">أقصى مسؤولية للبائع — يتكفل بالشحن والتأمين وإجراءات الاستيراد والجمارك والتوصيل للمشتري. المشتري لا يتحمل أي شيء.</div>
+      <span class="ic-tag tag-any">جميع وسائل النقل</span>
+    </div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-label">اختبر نفسك</div>
+    <p class="quiz-q">شركة ليبية تستورد قمح صباً بالسفينة. أي مصطلح يناسبها لو أرادت أن يتحمل البائع تكلفة النقل لكن المخاطرة تنتقل عند ميناء الشحن؟</p>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="answer(this,'correct',1)">CFR — البائع يدفع النولون لكن المخاطرة تنتقل فور الشحن على ظهر السفينة</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',1)">DDP — لأن البائع يتحمل كل شيء حتى المستودع</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',1)">EXW — لأن البضاعة سائبة</button>
+    </div>
+    <div class="quiz-feedback" id="qf1"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="goTo(0)">→ السابق</button>
+    <span class="counter">٢ / ٧</span>
+    <button class="nav-btn primary" onclick="goTo(2)">← التالي</button>
+  </div>
+</div>
+
+<!-- ════════════ MODULE 2 ════════════ -->
+<div class="module" id="m2">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ٣</span>
+    <span class="mod-title">مجموعة F و C — الأكثر استخداماً في ليبيا</span>
+    <span class="mod-time">٥ دقائق</span>
+  </div>
+
+  <div class="kp blue">
+    <span class="kp-icon">🏆</span>
+    <p><strong>CIF هو المصطلح رقم 1 في الاستيرادات الليبية</strong> — يظهر في أكثر من 80% من الاعتمادات المستندية التجارية لأنه يُبسّط مستندات الاعتماد ويحمي المستورد.</p>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">مقارنة عملية: FOB مقابل CIF</div>
+
+  <table class="comp-table">
+    <tr>
+      <th>البند</th>
+      <th>FOB</th>
+      <th>CIF</th>
+    </tr>
+    <tr><td>من يدفع النولون؟</td><td class="cross">المشتري ✗</td><td class="check">البائع ✓</td></tr>
+    <tr><td>من يشتري التأمين؟</td><td class="cross">المشتري ✗</td><td class="check">البائع ✓</td></tr>
+    <tr><td>نقطة انتقال المخاطرة</td><td>عند الشحن على السفينة</td><td>عند الشحن على السفينة</td></tr>
+    <tr><td>مستندات الاعتماد</td><td>بوليصة شحن + فاتورة</td><td>بوليصة + فاتورة + تأمين</td></tr>
+    <tr><td>الأنسب لـ</td><td>مستورد لديه ناقله الخاص</td><td>معظم المستوردين الليبيين</td></tr>
+  </table>
+
+  <!-- CIF example -->
+  <div class="example-box">
+    <div class="ex-label">مثال حي — اعتماد مستندي</div>
+    <div class="ex-title">استيراد 30,000 طن دقيق قمح — CIF ميناء طرابلس</div>
+    <div class="ex-body">
+      <strong>الاعتماد يذكر:</strong> "تسليم وصل مؤمن CIF ميناء طرابلس — ليبيا"<br><br>
+      <strong>البائع ملزم بـ:</strong> شحن الدقيق من ميناء الشحن + دفع النولون + شراء بوليصة تأمين بحري (110% من قيمة الفاتورة) لصالح المشتري.<br><br>
+      <strong>مستندات الاعتماد المطلوبة:</strong><br>
+      • بوليصة شحن بحري نظيفة (Clean On Board B/L)<br>
+      • فاتورة تجارية: "30,000 MT Wheat Flour — EU SF 802/G"<br>
+      • وثيقة تأمين بحري لصالح المشتري — 110% من القيمة<br>
+      • شهادة منشأ<br>
+      • شهادة تفتيش من طرف ثالث (SGS أو Intertek)<br><br>
+      <strong>⚠️ ملاحظة مهمة:</strong> مسؤولية البائع تنتهي فور استلامه بوليصة الشحن من الناقل — لا علاقة له بما يحدث بعد الشحن.
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">FCA — الحل لإشكالية الحاويات في الاعتمادات</div>
+
+  <div class="kp">
+    <span class="kp-icon">📦</span>
+    <p>عندما تُشحن البضاعة في <strong>حاويات</strong>، يسلم البائع في محطة الحاويات (CFS/CY) قبل أن تُحمَّل على السفينة. FOB في هذه الحالة غير دقيق. <strong>FCA هو الأصح للحاويات.</strong></p>
+  </div>
+
+  <div class="example-box">
+    <div class="ex-label">مثال حي — FCA مع الاعتماد المستندي</div>
+    <div class="ex-title">استيراد 1000 كرتون طماطم معلبة — FCA دبي، حاوية 20 قدم</div>
+    <div class="ex-body">
+      <strong>السيناريو:</strong> شركة ليبية تشتري معلبات من دبي بمصطلح FCA.<br><br>
+      <strong>تحديث إنكوتيرمز 2020:</strong> المشتري يمكنه الآن أن يطلب من البائع الحصول على بوليصة شحن "On Board" من الناقل، وهذا يحل إشكالية الاعتمادات المستندية التي تشترط بوليصة "محملة على ظهر السفينة".<br><br>
+      <strong>الإجراء العملي في الاعتماد:</strong><br>
+      • يحدد الاعتماد: <em>"FCA ميناء جبل علي — دبي"</em><br>
+      • البائع يسلم في محطة الحاويات ويحصل على بوليصة شحن On Board<br>
+      • المشتري يختار شركة الشحن ويدفع النولون من دبي إلى طرابلس
+    </div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-label">اختبر نفسك</div>
+    <p class="quiz-q">في عقد CIF، أُصيبت البضاعة بضرر بعد شحنها على السفينة وقبل وصولها لطرابلس. من يتحمل الخسارة؟</p>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="answer(this,'wrong',2)">البائع — لأن المصطلح CIF يعني أنه مسؤول حتى الوصول</button>
+      <button class="quiz-opt" onclick="answer(this,'correct',2)">المشتري — المخاطرة انتقلت إليه فور الشحن، لكنه محمي بوثيقة التأمين التي اشتراها البائع لصالحه</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',2)">شركة الشحن مسؤولة دائماً</button>
+    </div>
+    <div class="quiz-feedback" id="qf2"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="goTo(1)">→ السابق</button>
+    <span class="counter">٣ / ٧</span>
+    <button class="nav-btn primary" onclick="goTo(3)">← التالي</button>
+  </div>
+</div>
+
+<!-- ════════════ MODULE 3 ════════════ -->
+<div class="module" id="m3">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ٤</span>
+    <span class="mod-title">مجموعة D — متى يتحمل البائع كل شيء؟</span>
+    <span class="mod-time">٥ دقائق</span>
+  </div>
+
+  <div class="kp red">
+    <span class="kp-icon">🎯</span>
+    <p>مجموعة D هي الأعلى مسؤولية للبائع. تُستخدم عندما يريد المستورد <strong>بضاعة جاهزة عند بابه</strong> دون أن يتعامل مع شركات الشحن أو التأمين أو الجمارك.</p>
+  </div>
+
+  <!-- Scenario tabs for DAP/DPU/DDP -->
+  <div class="section-title">مقارنة: DAP — DPU — DDP</div>
+
+  <div class="scen-tabs">
+    <button class="scen-tab active" onclick="showScen('dap')">DAP</button>
+    <button class="scen-tab" onclick="showScen('dpu')">DPU</button>
+    <button class="scen-tab" onclick="showScen('ddp')">DDP</button>
+  </div>
+
+  <div class="scen-content active" id="sc-dap">
+    <div class="example-box">
+      <div class="ex-label">DAP — تسليم في موقع محدد (بديل DDU)</div>
+      <div class="ex-title">DAP مستودع المستورد، طرابلس</div>
+      <div class="ex-body">
+        <strong>⚡ هذا هو DAP الذي حل محل DDU القديم تماماً.</strong><br><br>
+        <strong>مسؤولية البائع:</strong> الشحن + التأمين + التوصيل حتى المستودع المحدد بدون تفريغ.<br><br>
+        <strong>مسؤولية المشتري:</strong> إجراءات الاستيراد + الجمارك الليبية + تفريغ البضاعة من الشاحنة.<br><br>
+        <strong>مثال في الاعتماد:</strong><br>
+        <em>"DAP Warehouse, Industrial Zone, Tripoli, Libya"</em><br><br>
+        <strong>متى تستخدمه؟</strong> عندما تريد البضاعة موصلة لمستودعك لكنك تفضل التعامل مع الجمارك بنفسك.
+      </div>
+    </div>
+  </div>
+
+  <div class="scen-content" id="sc-dpu">
+    <div class="example-box">
+      <div class="ex-label">DPU — تسليم بعد التفريغ (جديد 2020)</div>
+      <div class="ex-title">DPU ميناء طرابلس التجاري</div>
+      <div class="ex-body">
+        <strong>المصطلح الوحيد الذي يُلزم البائع بالتفريغ.</strong><br><br>
+        <strong>مسؤولية البائع:</strong> الشحن + التأمين + التوصيل + <strong>تفريغ البضاعة</strong> في الموقع المحدد.<br><br>
+        <strong>مسؤولية المشتري:</strong> إجراءات الجمارك والاستيراد.<br><br>
+        <strong>مثال عملي:</strong> مشروع بناء يستورد معدات ثقيلة — DPU موقع المشروع يعني أن البائع يوفر الرافعة والتفريغ.<br><br>
+        <strong>⚠️ انتبه:</strong> إذا لم يتمكن البائع من التفريغ في الموقع (نقص رافعة مثلاً)، يكون مسؤولاً عن التأخير والتكاليف الإضافية.
+      </div>
+    </div>
+  </div>
+
+  <div class="scen-content" id="sc-ddp">
+    <div class="example-box">
+      <div class="ex-label">DDP — تسليم مدفوع الرسوم (أقصى حماية للمشتري)</div>
+      <div class="ex-title">DDP مستودع المستورد، طرابلس</div>
+      <div class="ex-body">
+        <strong>البائع يتحمل كل شيء — بما فيه الجمارك الليبية.</strong><br><br>
+        <strong>مسؤولية البائع:</strong> الشحن + التأمين + التوصيل + إجراءات الاستيراد + <strong>دفع الجمارك والضرائب الليبية</strong>.<br><br>
+        <strong>مسؤولية المشتري:</strong> استلام البضاعة فقط.<br><br>
+        <strong>⚠️ خطر عملي في ليبيا:</strong> نادراً ما يقبل المورد الأجنبي DDP لأنه لا يستطيع التعامل مع الجمارك الليبية مباشرة. غالباً يُستخدم مع الموردين الذين لديهم وكلاء محليون في ليبيا.
+      </div>
+    </div>
+  </div>
+
+  <!-- Flow diagram for DAP -->
+  <hr class="divider">
+  <div class="section-title">خط مسؤولية DAP — من المصنع إلى مستودعك</div>
+  <div class="flow-scroll">
+    <div class="flow-row">
+      <div class="flow-step"><div class="flow-box sel">المصنع / المستودع</div></div>
+      <div class="flow-arr">←</div>
+      <div class="flow-step"><div class="flow-box sel">إجراءات التصدير</div></div>
+      <div class="flow-arr">←</div>
+      <div class="flow-step"><div class="flow-box sel">الشحن البحري</div></div>
+      <div class="flow-arr">←</div>
+      <div class="flow-step"><div class="flow-box sel">ميناء الوصول</div></div>
+      <div class="flow-arr">←</div>
+      <div class="flow-step"><div class="flow-box buy">الجمارك الليبية</div></div>
+      <div class="flow-arr">←</div>
+      <div class="flow-step"><div class="flow-box buy">التفريغ والمستودع</div></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:6px;font-size:11px;">
+      <span style="color:var(--blue)">█ مسؤولية البائع (DAP)</span>
+      <span style="color:var(--gold)">█ مسؤولية المشتري</span>
+    </div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-label">اختبر نفسك</div>
+    <p class="quiz-q">مستورد ليبي يريد بضاعته موصلة لمستودعه ومفرّغة، وهو يفضل أن يتعامل مع الجمارك الليبية بنفسه. ما المصطلح المناسب؟</p>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="answer(this,'wrong',3)">DDP — لأن البائع يتحمل كل شيء</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',3)">DAP — البائع يوصل لكن المشتري يفرّغ ويُسدد الجمارك</button>
+      <button class="quiz-opt" onclick="answer(this,'correct',3)">DPU — البائع يوصل ويفرّغ، والمشتري يتعامل مع الجمارك</button>
+    </div>
+    <div class="quiz-feedback" id="qf3"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="goTo(2)">→ السابق</button>
+    <span class="counter">٤ / ٧</span>
+    <button class="nav-btn primary" onclick="goTo(4)">← التالي</button>
+  </div>
+</div>
+
+<!-- ════════════ MODULE 4 ════════════ -->
+<div class="module" id="m4">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ٥</span>
+    <span class="mod-title">تطبيقات الإنكوتيرمز في الاعتمادات المستندية</span>
+    <span class="mod-time">٥ دقائق</span>
+  </div>
+
+  <div class="kp green">
+    <span class="kp-icon">⛓️</span>
+    <p>في آلية الاعتمادات المستندية الصادرة عبر المصارف الليبية (وفق منشورات مصرف ليبيا المركزي وقواعد UCP 600)، يُعتبر حقل <strong>Incoterm</strong> جوهرياً لتدقيق القيمة ومطابقة الفاتورة.</p>
+  </div>
+
+  <div class="alert warn">
+    <strong>قاعدة التوافق المطلق:</strong> إذا نص الاعتماد المستندي على مصطلح <code>CIF Tripoli Port - Incoterms 2020</code> وجاءت بوليصة الشحن محملة بعبارة <code>Freight Collect</code> (النولون يدفع عند الوصول)، سيرفض المصرف المستندات فوراً لوجود اختلاف (Discrepancy).
+  </div>
+
+  <div class="cl-title">قائمة التدقيق المستندي الأساسية (Checklist):</div>
+  <div class="checklist">
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p>تطابق حقل المصطلح التجاري في الفاتورة المبدئية والنهائية مع نص سويفت الاعتماد (حقل 45A أو 46A).</p>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p>في مصطلحات المجموعة C (مثل CIF و CIP): التأكد من إرفاق وثيقة التأمين بالشروط المتفق عليها وقيمتها لا تقل عن 110%.</p>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <p>في مصطلحات FCA و FOB: التحقق من توفر بوليصة شحن تشير بوضوح إلى التحميل على ظهر السفينة تلبية لشروط التسييل المالي.</p>
+    </div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-label">اختبر نفسك</div>
+    <p class="quiz-q">تم فتح اعتماد مستندي بشرط CFR Benghazi. قدم المستفيد مستندات تشمل بوليصة تأمين تغطي الرحلة بالكامل. كيف يتعامل المصرف مع هذا المستند الإضافي؟</p>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="answer(this,'correct',4)">يقبلها المصرف كـ مستند إضافي مستوفى ما لم يمنع الاعتماد ذلك صراحة، لكن البائع تحمل تكلفة غير ملزم بها</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',4)">يرفض المصرف المستندات فوراً لوجود مخالفة جسيمة لشروط النقل</button>
+    </div>
+    <div class="quiz-feedback" id="qf4"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="goTo(3)">→ السابق</button>
+    <span class="counter">٥ / ٧</span>
+    <button class="nav-btn primary" onclick="goTo(5)">← التالي</button>
+  </div>
+</div>
+
+<!-- ════════════ MODULE 5 ════════════ -->
+<div class="module" id="m5">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ٦</span>
+    <span class="mod-title">أخطاء شائعة في الممارسات المحلية وعلاجها</span>
+    <span class="mod-time">٥ دقائق</span>
+  </div>
+
+  <div class="kp red">
+    <span class="kp-icon">⚠️</span>
+    <p><strong>الخلط بين نقطة التكلفة ونقطة المخاطرة:</strong> في مصطلحات المجموعة C (مثل CFR و CIF)، يدفع البائع النولون حتى ميناء الوصول (طرابلس مثلاً)، ولكن المخاطر تنتقل للمشتري في ميناء الشحن بمجرد عبور البضاعة حاجز السفينة. أي تضرر أثناء الرحلة البحرية يستوجب ملاحقة التأمين وليس البائع!</p>
+  </div>
+
+  <div class="kp">
+    <span class="kp-icon">💡</span>
+    <p><strong>عدم تحديد المكان بدقة:</strong> كتابة <code>FOB China</code> خطأ فادح. الصين بها مئات الموانئ. الصياغة القانونية السليمة هي تحديد الميناء والمحطة بدقة: <code>FOB Shanghai Port (Terminal 1) Incoterms 2020</code>.</p>
+  </div>
+
+  <div class="alert success">
+    <strong>توصية عملية:</strong> تجنب استخدام مصطلح EXW عند الاستيراد في اعتمادات ليبيا إلا في حالة وجود شركة شحن دولية تملك مكتباً محلياً قوياً في بلد التصدير يتولى التخليص الجمركي الصادر نيابة عنك وعن البائع المعفي قانونياً.
+  </div>
+
+  <div class="quiz-box">
+    <div class="quiz-label">اختبر نفسك</div>
+    <p class="quiz-q">وصلت الحاوية المتفق عليها بمصطلح CIF إلى ميناء الخمس، وتفاجأ المستورد بوجود مصاريف تفريغ أرضية غير مدفوعة بالميناء (THC). من المطالب بسدادها وفقاً للقواعد؟</p>
+    <div class="quiz-opts">
+      <button class="quiz-opt" onclick="answer(this,'correct',5)">المشتري (المستورد) يتحملها إلا إذا نص عقد الشحن المبرم بواسطة البائع على إدراج تكاليف التفريغ ضمن خط الشحن</button>
+      <button class="quiz-opt" onclick="answer(this,'wrong',5)">البائع مجبر على دفعها دائماً لأن التوصيل يشمل أرضية ميناء الوصول</button>
+    </div>
+    <div class="quiz-feedback" id="qf5"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="goTo(4)">→ السابق</button>
+    <span class="counter">٦ / ٧</span>
+    <button class="nav-btn primary" onclick="goTo(6)">← التالي</button>
+  </div>
+</div>
+
+<!-- ════════════ MODULE 6 (NEW 7th PAGE) ════════════ -->
+<div class="module" id="m6">
+  <div class="mod-header">
+    <span class="mod-badge">الوحدة ٧</span>
+    <span class="mod-title">بيانات الاتصال والدعم اللوجستي</span>
+    <span class="mod-time">٢ دقيقة</span>
+  </div>
+
+  <div class="kp blue">
+    <span class="kp-icon">📞</span>
+    <p>للاستشارات المتخصصة في بناء وتطوير الأنظمة التشغيلية، اللوجستيات وسلاسل الإمداد، وتطبيقات التجارة الدولية والاعتمادات المستندية في الموانئ الليبية، يسعدنا تواصلكم المباشر معنا:</p>
+  </div>
+
+  <div class="ic-grid">
+    <!-- المستشار عيسى بعيو -->
+    <div class="ic-card">
+      <div class="ic-top">
+        <span class="ic-code">أ. عيسى  سالم بعيو</span>
+      </div>
+      <div class="ic-desc" style="font-size: 12.5px; margin-top: 8px;">
+        <strong>الصفة:</strong> أخصائي خبير التجارة الدولية وسلاسل الإمداد<br>
+        <strong>التخصص:</strong> بناء الهياكل الإدارية، أدلة التشغيل القياسية (SOPs)، وإدارة سلاسل الإمداد والمستودعات.<br>
+        <strong>البريد الإلكتروني:</strong> <a href="mailto:issa.bayou@gmail.com" style="color: var(--blue); text-decoration: none;">issa.bayou@gmail.com</a><br>
+        <strong>هاتف:</strong> 0918052615<br>
+      </div>
+      <span class="ic-tag tag-any">استشارات سلاسل الإمداد والتطوير المؤسسي</span>
+    </div>
+
+    <!-- الربان عمر فرج رنوش -->
+    <div class="ic-card">
+      <div class="ic-top">
+        <span class="ic-code">الربان عمر فرج فنوش</span>
+      </div>
+      <div class="ic-desc" style="font-size: 12.5px; margin-top: 8px;">
+        <strong>الصفة:</strong> خبير واستشاري بحري معتمد ومؤلف أدلة النقل واللوجستيات<br>
+        <strong>التخصص:</strong> النقل البحري والموانئ، عقود ومصطلحات التجارة الدولية الشاملة (ICC قواعد)، والتأمين البحري.<br>
+                <strong>الموقع/المقر الميداني:</strong> طرابلس ، ليبيا
+      </div>
+      <span class="ic-tag tag-sea">استشارات النقل البحري والموانئ</span>
+    </div>
+  </div>
+
+  
+  <div class="alert success" style="text-align: center; font-size: 14px; padding: 1.5rem; margin-top: 1.5rem;">
+    🎉 <strong>تهانينا! لقد أتممت الدورة التدريبية المكثفة لقواعد الإنكوتيرمز 2020.</strong><br>
+    جاهز الآن لتطبيق هذه المفاهيم بدقة في تعاملاتك وعقودك التجارية القادمة.
+  </div>
+
+  <div class="nav-row">
+    <button class="nav-btn" onclick="goTo(5)">→ السابق</button>
+    <span class="counter">٧ / ٧</span>
+    <button class="nav-btn primary" onclick="alert('تم إكمال الدورة بنجاح! يمكنك مراجعة الوحدات في أي وقت.')">إنهاء الدورة 🎉</button>
+  </div>
+  <div style="margin-top: 2.5rem; text-align: center; font-size: 11px; color: var(--text3); border-top: 0.5px solid var(--border); padding-top: 1rem;">
+    &copy; جميع الحقوق محفوظة · إعداد: عيسى سالم بعيو ومراجعة الربان عمر فرج فنوش.
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     INTERACTIVE JAVASCRIPT
+════════════════════════════════ -->
+<script>
+  const totalTabs = 7;
+
+  function goTo(index) {
+    // Hide all modules
+    const modules = document.querySelectorAll('.module');
+    modules.forEach(m => m.classList.remove('active'));
+    
+    // Show selected module
+    const targetModule = document.getElementById('m' + index);
+    if(targetModule) targetModule.classList.add('active');
+
+    // Update active tab styles
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach((t, i) => {
+      if(i === index) t.classList.add('active');
+      else t.classList.remove('active');
+    });
+
+    // Update progress bar
+    const fillPercent = ((index + 1) / totalTabs) * 100;
+    document.getElementById('prog').style.width = fillPercent + '%';
+    document.getElementById('prog-label').innerText = (index + 1) + ' / ' + totalTabs;
+
+    // Scroll back to top smoothly
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function answer(btn, status, quizId) {
+    const parent = btn.parentElement;
+    const opts = parent.querySelectorAll('.quiz-opt');
+    const feedback = document.getElementById('qf' + quizId);
+
+    // Disable all options in this specific quiz box after choice
+    opts.forEach(opt => opt.disabled = true);
+
+    if (status === 'correct') {
+      btn.classList.add('correct');
+      feedback.className = 'quiz-feedback show ok';
+      feedback.innerHTML = '<strong>إجابة صحيحة متميزة!</strong> تم استيعاب المفهوم وتطبيقه بنجاح.';
+    } else {
+      btn.classList.add('wrong');
+      feedback.className = 'quiz-feedback show no';
+      feedback.innerHTML = '<strong>محاولة تحتاج مراجعة!</strong> راجع النقاط الأساسية في هذه الوحدة لمعرفة السبب بدقة.';
+      
+      // Highlight the correct one visually for education
+      opts.forEach(opt => {
+        if(opt.getAttribute('onclick').includes('correct')) {
+          opt.classList.add('correct');
+        }
+      });
+    }
+  }
+
+  function showScen(id) {
+    // Hide all scenario contents
+    const contents = document.querySelectorAll('.scen-content');
+    contents.forEach(c => c.classList.remove('active'));
+    
+    // Remove active style from scenario tabs
+    const stab = document.querySelectorAll('.scen-tab');
+    stab.forEach(t => t.classList.remove('active'));
+
+    // Activate selected
+    document.getElementById('sc-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggleCheck(el) {
+    const box = el.querySelector('.check-box');
+    if(box.classList.contains('done')) {
+      box.classList.remove('done');
+      box.innerHTML = '';
+    } else {
+      box.classList.add('done');
+      box.innerHTML = '✓';
+    }
+  }
+</script>
+
+</body>
+</html>
